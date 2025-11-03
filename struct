@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student{ 
+    int id;
+    int year;
+    float gpa;
+} ;
+int main() {
+    Student s1;
+    s1.id=1234;
+    s1.year=2008;
+    s1.gpa=3.41;
+    Student s2;
+    s2.id=5678;
+    s2.year=2010;
+    s2.gpa;
+    cout<<"Student 1 ID: "<<s1.id<<", Year: "<<s1.year<<", GPA: "<<s1.gpa<<endl;
+    cout<<"Student 2 ID: "<<s2.id<<", Year: "<<s2.year<<", GPA: "<<s2.gpa<<endl;
+    return 0;
+}
