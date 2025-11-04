@@ -1,0 +1,36 @@
+#include <iostream>
+#include  <iomanip>
+#include <string>
+using namespace std;
+struct InvItem {
+    int partNum;
+    string description;
+    int onHand;
+    double price;
+};
+void getItemData(InvItem &);
+void showItem(const InvItem&);
+int main() {
+    InvItem part;
+    getItemData(part);
+    showItem(part);
+    return 0;
+}
+void getItemData(InvItem &item) {
+    cout << "Enter partNumber: ";
+    cin>>item.partNum;
+    cout << "Enter description: ";
+    cin.get();
+    getline(cin,item.description);
+    cout<<"Enter the quantity on hand: ";
+    cin>>item.onHand;
+    cout<<"Enter the unit price: ";
+    cin>>item.price;
+}
+void showItem(const InvItem &item) {
+    cout<<fixed<<showpoint<<setprecision(2)<<endl;
+    cout<<"Part number: "<<item.partNum<<endl;
+    cout<<"Description: "<<item.description<<endl;
+    cout<<"Quantity on hand "<<item.onHand<<endl;
+    cout<<"Price:  $"<<item.price<<endl;
+}
