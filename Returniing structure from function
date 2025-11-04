@@ -1,0 +1,28 @@
+#include <iostream>
+#include  <iomanip>
+using namespace std;
+struct Rectangle {
+    int length;
+    int width;
+};
+Rectangle getInf() {
+    Rectangle temp;
+    cout<<"Enter length ";
+    cin>>temp.length;
+    cout<<"Enter width ";
+    cin>>temp.width;
+    return temp;
+}
+void showInf(const Rectangle&);
+int main() {
+    Rectangle rect;
+    rect=getInf();
+    showInf(rect);
+    return 0;
+}
+void showInf(const Rectangle& rect) {
+    cout<<fixed<<setprecision(2);
+    cout<<"Length: "<<rect.length<<endl;
+    cout<<"Width: "<<rect.width<<endl;
+
+}
