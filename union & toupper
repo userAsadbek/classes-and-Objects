@@ -1,0 +1,32 @@
+#include <iostream>
+#include  <iomanip>
+#include <cctype>
+using namespace std;
+
+union Paysource {
+    short hours;
+    float sales;
+};
+int main() {
+    Paysource employee1;
+    char hourlyType;
+
+    float payrate,grosspay;
+    cout<<"Is this an hourly employee(y or n)";
+    cin>>hourlyType;
+    hourlyType=toupper(hourlyType); // use of upper
+
+    if (hourlyType=='Y') {
+        cout<<"What is the hourly payrate?";
+        cin>>payrate;
+        cout<<"How many hours were worked ";
+     cin>>employee1.hours;
+    grosspay=payrate*employee1.hours;
+    cout<<"Gross pay: "<<grosspay;}
+    else {
+        cout<<"What are the total sales for this emloyee?";
+        cin>>employee1.sales;
+        grosspay=employee1.sales*0.10;
+        cout<<"Gross pay: $"<<grosspay;
+    }
+}
