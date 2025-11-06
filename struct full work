@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+struct TempScale {
+    double fahrenheit;
+    double celsius;
+};
+
+struct Reading {
+    int windSpeed;
+    double humidity;
+    TempScale temperature;
+};
+
+// Pass by reference
+void inputReading(Reading& r) {
+    cout << "Enter wind speed: ";
+    cin >> r.windSpeed;
+    cout << "Enter humidity: ";
+    cin >> r.humidity;
+    cout << "Enter temperature in Celsius: ";
+    cin >> r.temperature.celsius;
+    cout << "Enter temperature in Fahrenheit: ";
+    cin >> r.temperature.fahrenheit;
+}
+
+int main() {
+    Reading today;
+    inputReading(today);  // today is passed by reference
+    cout << "Wind speed entered: " << today.windSpeed << endl; // shows updated value
+}
