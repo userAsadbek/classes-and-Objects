@@ -1,0 +1,64 @@
+#include <iostream>
+#include <string>
+using namespace std;
+class  Inventory {
+private:
+    int proid;
+    string prodDescription;
+    int qtyinstock;
+    int removel;
+public:
+    Inventory() {
+        proid = 0;
+        prodDescription="not named yet";
+        qtyinstock = 0;
+        removel = 0;}
+    void setProid() {
+        int id;
+        cout<<"Enter proid number: "; cin>>id;
+        proid = id;}
+    void setProdDescription() {
+        string desz;
+        cout<<"Enter pro Description";
+        cin.ignore();
+        getline(cin,desz);
+        prodDescription=desz;}
+    void  setqt() {
+        int quan;
+        cout<<"Enter quantity  instock"; cin>>quan;
+        qtyinstock = quan;}
+    void setR( ) {
+        int r;
+        cout<<"Enter removed quantity "; cin>>r;
+        removel=r; }
+    int getRemove() { return removel; }
+    int getProid() { return proid;}
+    string getProdDescription() { return  prodDescription;}
+    int getqt() {
+        return qtyinstock;
+    }
+
+    bool pos () {
+        if (qtyinstock<removel) {qtyinstock=-1; return false;}
+        else {qtyinstock-=removel; return true;}
+    }
+};
+
+
+
+int main() {
+Inventory  it;
+    it.setProid();
+    it.setProdDescription();
+    it.setqt();
+    it.setR();
+   if (it.pos()) {
+       cout<<"stock updated succefsully\n";}
+   else cout<<" Error: Removed quantity exceed stock so -1\n ";
+
+  cout<<"Proid is: "<<it.getProid()<<endl;
+  cout<<"Description is "<<it.getProdDescription()<<endl;
+  cout<<"Quantity of item is "<<it.getqt()<<endl;
+
+    return 0;
+}
