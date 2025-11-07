@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+class Change {
+private:
+    int pennies;
+    int nickels;
+    int dimes;
+    int quarters;
+public:
+    Change() {
+        pennies=nickels=dimes=quarters=0;}
+     Change(int p,int n,int d, int q);
+
+    void Display() {
+        cout<<"Pennies "<<pennies<<endl;
+        cout<<"Nickels "<<nickels<<endl;
+        cout<<"Dimes "<<dimes<<endl;
+        cout<<"Quarters "<<quarters<<endl;}
+};
+ Change::Change(int p,int n, int d, int q) {
+    pennies=p;
+    nickels=n;
+    dimes=d;
+    quarters=q;
+}
+int main() {
+     Change a1;
+     cout<<"Default";
+    a1.Display();
+    Change z1(100,50,50,25);
+    cout<<"\n Custom change ";
+     z1.Display();
+
+ }
