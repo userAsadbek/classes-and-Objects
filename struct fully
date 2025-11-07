@@ -1,0 +1,156 @@
+#include <iostream>
+#include <iomanip>
+using namespace std;
+struct MovieData {
+    string name;
+    string director;
+    int year;
+    int minutes;
+    double production;
+  double  profit;
+    MovieData(const string&n,const string &d,int y,int m,double p,double pro) {
+        name=n;
+        director=d;
+        year=y;
+        minutes=m;
+        production=p;
+        profit=pro;
+    }
+void display() {
+      cout<<"Title: "<<name<<endl;
+      cout<<"Director: "<<director<<endl;
+      cout<<"Year released:  "<<year<<endl;
+      cout<<"Running time: "<<minutes<<" in minutes"<<endl;
+      cout<<"Production cost : $"<<production<<endl;
+      cout<<"Revenue for first year: $"<<profit<<endl;
+      cout<<"--------------------"<<endl;
+    }
+};
+
+struct Corpdata {
+    string divison;
+    double f,s,t,fo;
+
+   Corpdata(string d,double fir,double sec,double third,double for1) {
+       divison=d;
+       f=fir;
+       s=sec;
+       t=third;
+       fo=for1;
+   }
+  void display1() {
+       double total=f+s+t+fo;
+       double average=total/4;
+      cout<<"Divison: "<<divison<<endl;
+      cout<<"Total sales:  $"<<total<<endl;
+      cout<<"Average sales:  $"<<average<<endl;
+
+   }
+};
+
+struct Monthly {
+    double housing;
+    double utilities;
+    double household_expenses;
+    double transportation;
+    double food;
+    double medical;
+    double insurance;
+    double entertainment;
+    double clothing ;
+    double miscellaneous;
+    double total;
+    Monthly(double h,double u,double he,double t,double f,double m,
+        double i,double e,double c,double me) {
+        housing=h;
+        utilities=u;
+        household_expenses=he;
+        transportation=t;
+        food=f;
+        medical=m;
+        insurance=i;
+        entertainment=e;
+        clothing=c;
+        miscellaneous=me;
+        total=clothing+miscellaneous+housing+utilities+food+medical+insurance+household_expenses+entertainment+transportation;
+
+    }
+   Monthly() {
+        housing=500.0;
+        utilities=150.0;
+        household_expenses=65.0;
+        transportation=50.0;
+        food=250.0;
+        medical=30.0;
+        insurance=100.0;
+        entertainment=150.0;
+        clothing=75.0;
+        miscellaneous=50.0;
+       total=clothing+miscellaneous+housing+utilities+food+medical+insurance+household_expenses+entertainment+transportation;
+    }
+
+  void display2() {
+
+        cout<<showpoint<<fixed<<setprecision(2)<<endl;
+        cout<<"AVERAGE MONTHLY SPENT "<<endl;
+        cout<<"-------------------- "<<endl;
+        cout<<"Housing: "<<housing<<endl;
+        cout<<"Utilities: "<<utilities<<endl;
+        cout<<"Household: "<<household_expenses<<endl;
+        cout<<"Transportation: "<<transportation<<endl;
+        cout<<"Food: "<<food<<endl;
+        cout<<"Medical: "<<medical<<endl;
+        cout<<"Insurance: "<<insurance<<endl;
+        cout<<"Entertainment: "<<entertainment<<endl;
+        cout<<"Clothing: "<<clothing<<endl;
+        cout<<"Miscellaneous: "<<miscellaneous<<endl;
+       cout<<"Total average : "<<total<<endl;
+       cout<<"-------------------- "<<endl;
+    }
+    void Comp(const Monthly &other) {
+        cout << "Comparing actual spending to average:" << endl;
+
+        auto check = [](const string& name, double avg, double actual) {
+            if (actual > avg)
+                cout << name << ": over budget by $" << actual - avg << endl;
+            else
+                cout << name << ": under budget by $" << avg - actual << endl;
+        };
+
+        check("Housing", housing, other.housing);
+        check("Utilities", utilities, other.utilities);
+        check("Household", household_expenses, other.household_expenses);
+        check("Transportation", transportation, other.transportation);
+        check("Food", food, other.food);
+        check("Medical", medical, other.medical);
+        check("Insurance", insurance, other.insurance);
+        check("Entertainment", entertainment, other.entertainment);
+        check("Clothing", clothing, other.clothing);
+        check("Miscellaneous", miscellaneous, other.miscellaneous);
+
+        if (total > other.total)
+            cout << "Total: over budget by $" << total - other.total << endl;
+        else
+            cout << "Total: under budget by $" << other.total - total << endl;
+    }
+
+};
+
+int main() {
+   MovieData movie1("Inception","Christopen Nolan",2010,125,924560.5,115500.7);
+   MovieData movie2("Interstellar ","Christopen Nolan",2014,169,550928.7,2000000.6);
+
+movie1.display();
+movie2.display(); //problem 1
+
+    Corpdata  d1("North",15000,27000,12560,18700);
+    d1.display1(); //problem 2
+  Monthly ave;
+  Monthly actual(120,450,250,50,60,10,50,75,100,320);
+
+    ave.display2();
+    actual.display2();
+    actual.Comp(ave);
+
+  return 0;
+}
