@@ -1,0 +1,14 @@
+ HANDLE screen=GetStdHandle(STD_OUTPUT_HANDLE);
+  COORD pos1={79,0}; //LEFT
+  COORD pos2={0,0}; // RIGHT
+
+ while(pos1.X>=0&& pos2.X<=79) {
+    SetConsoleCursorPosition(screen,pos1);
+    cout<<"LEFT";
+    pos1.X=pos1.X-6;
+    SetConsoleCursorPosition(screen,pos2);
+    cout<<"RIGHT";
+    pos2.X=pos2.X+6;
+    Sleep(1000);}
+    return 0;
+}
