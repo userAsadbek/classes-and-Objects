@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+#include <windows.h>
+using namespace std;
+struct UserInfo {
+    string name;
+    int age;
+    char gender;
+};
+void placeCursor(HANDLE screen,int row, int col) {
+
+    COORD position;
+    position.X=col; // column position
+    position.Y=row;// row position
+
+
+    SetConsoleCursorPosition(screen,position);
+}
+void Displayprompts(HANDLE screen) {
+    placeCursor(screen,5,31);
+    cout<<"******* Data Entry Form *******"<<endl;
+    placeCursor(screen,7,31);
+    cout<<"Name:"<<endl;
+    placeCursor(screen,9,31);
+    cout<<"Age:                 Gender (M/F): "<<endl;}
+void getInput(HANDLE screen,UserInfo &input) {
+    placeCursor(screen,7,37);
+    cin.ignore();
+    getline(cin,input.name);
+    placeCursor(screen,9,36);
+    cin>>input.age;
+    placeCursor(screen,9,60);
+    cin>>input.gender;}
+void displayData(HANDLE screen,UserInfo input) {
+    placeCursor(screen,10,0);
+    cout<<"Here is the data you entered."<<endl;
+    cout<<"Name: "<<input.name<<endl;
+    cout<<"Age: "<<input.age<<endl;
+    cout<<"Gender: "<<input.gender<<endl;
+}
+
+int main(){
+    UserInfo input;
+    HANDLE screen=GetStdHandle(STD_OUTPUT_HANDLE);
+    Displayprompts(screen);
+    getInput(screen,input);
+    displayData(screen,input);
+
+ return 0;}
