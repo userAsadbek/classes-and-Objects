@@ -1,0 +1,345 @@
+#include <iomanip>
+#include <iostream>
+#include <string>
+#include <windows.h>
+ using namespace std;
+
+
+
+//PROBLEM 1 related to classes
+class IntRange {
+private:
+ int maxV;
+ int minV;
+ int i;
+public:
+ IntRange(int minVAL, int maxVAL)
+ { minV=minVAL;
+ maxV=maxVAL;}
+ int getInt();
+};
+int IntRange::getInt() {
+ cout<<"Enter number : ";
+ cin>>i;
+ while(i<minV || i>maxV) {
+  cout<<"Not valid numbe enter again";
+  cin>>i;
+ } return i;}
+// finishing of problem 1 above;
+
+//problem 2
+class Data {
+private:
+ int month;
+ int day;
+ int year;
+ string monthName[12];
+public:
+ Data(int i=1,int m=1,int y=2001) {
+  if (i>=1 && i<=31)  day=i; else day=1;
+  if (m>=1 && m<=12)  month=m; else month=1;
+  if (y>=1950 && y<=2020)  year=y;else year=2001;
+
+  monthName[0]="January";
+  monthName[1]="February";
+  monthName[2]="March";
+  monthName[3]="April";
+  monthName[4]="May";
+  monthName[5]="June";
+  monthName[6]="July";
+  monthName[7]="August";
+  monthName[8]="September";
+  monthName[9]="October";
+  monthName[10]="November";
+  monthName[11]="December";
+ }
+  void setMonth();
+  void setDay();
+  void setYear();
+  int getDay() { return day;}
+  int getMonth() { return month;}
+  int getYear() { return year; }
+  void getMonthnames();
+  void display();
+
+
+};
+void Data::getMonthnames() {
+
+
+for(int i=0;i<12;i++) {
+ cout<<"\n Month "<<i+1<<" : ";
+ getline(cin,monthName[i]);} }
+void Data::setDay() {
+ cout<<"Enter day ";
+ cin>>day;
+ while(day<1 || day>31) {
+  cout<<"Not valid day enter again";
+  cin>>day; }
+    }
+void Data::setMonth() {
+ cout<<"Enter month ";
+ cin>>month;
+ while(month<1 || month>12) {
+  cout<<"Not valid month enter again";
+  cin>>month;}
+}
+void Data::setYear() {
+ cout<<"Enter year ";
+ cin>>year;
+ while(year<1950|| year>2020) {
+  cout<<"Not valid year enter again";
+  cin>>year;
+ }
+}
+
+void Data::display() {
+ cout<<"\n Data "<<day<<"/"<<month<<"/"<<year;
+ cout<<"\n"<<monthName[month-1]<<" "<<day<<", "<<year;
+ cout<<"\n"<<day<<" "<<monthName[month-1]<<" "<<year<<endl;
+}
+//problem 2 done
+
+//problem 3
+class Heading {
+private:
+ string name;
+ string report;
+ public: Heading(string n="ABC INDUSTRIES",string r="REPORT") {
+  name=n;
+  report=r;}
+ void display() {
+  HANDLE screen = GetStdHandle(STD_OUTPUT_HANDLE);
+  COORD p1 = {33,1};
+  SetConsoleCursorPosition(screen, p1);
+  cout << name << endl;
+
+  COORD p2 = {30,2};
+  SetConsoleCursorPosition(screen, p2);
+  cout << report << endl;
+ }
+
+ // version with two arguments
+ void display(string n, string r) {
+  HANDLE screen = GetStdHandle(STD_OUTPUT_HANDLE);
+  COORD p1 = {33,1};
+  SetConsoleCursorPosition(screen, p1);
+  cout << n << endl;
+
+  COORD p2 = {30,2};
+  SetConsoleCursorPosition(screen, p2);
+  cout << r << endl;
+ }
+};
+
+//car class
+class CAR {
+private: int i;
+ string made;
+ int speed;
+public:
+ CAR(int y=2000,string m="Unknown",int s=0) {
+  i=y;
+  made=m;
+  speed=s;}
+ void setYear() {
+  int y;
+  cout<<"Enter year"; cin>>y;
+  i=y;}
+ void setName() {
+  string m;
+  cout<<"Enter name of make "; cin>>m;
+  made=m;}
+ void setSpeed() {
+  int s;
+  cout<<"Enter speed"; cin>>s;
+  speed=s;}
+ int getSpeed() { return speed;}
+ string getName() { return made;}
+ int  getYear() { return i;}
+ int Acc(){ return speed+=5;}
+ int Brake(){ return speed-=5;}
+
+ void display() {
+       cout<<"YEAR "<<i<<endl;
+       cout<<"NAME "<<made<<endl;
+        cout<<"SPEED "<<speed<<endl;}
+};
+
+
+class Widget {
+ int i;
+ const int p=160;
+ public:
+  Widget() {
+ i=0;
+    }
+ void setWidget(int z) { i=z; }
+ int getWidget() { return i; }
+void display() {
+  cout<<i/p<<" days needed to produce";
+ }
+};
+
+class Population {
+private:
+  int birth;
+  int death;
+  int population;
+public: Population(int b=0,int d=0,int p=2) {
+  birth=b;
+  death=d;
+  population=p;
+}
+ void setPopulation() {
+ int p;
+ cout<<"Enter current population: "; cin>>p;
+ if (p<2) population=2; population=p;}
+ int getPopulation() { return population; }
+ void setBirth() {
+  int b;
+ cout<<"Enter birth rate"; cin>>b;
+ if (b<0) birth=0; birth=b;
+}
+ void setDeath() {
+ int d;
+ cout<<"Enter death rate"; cin>>d;
+ if (d<0) death=0; death=d;
+}
+  int getBirth() { return birth; }
+ void display() {
+ cout<<"\n Birth rate after getted is "<<double(birth)/population<<endl;
+ cout<<"\n Death rate after getted is "<<double(death)/population<<endl;
+}
+};
+
+class Tip {
+private:
+ double tax;
+public:
+ Tip(double a=65) {  tax=a/100.0; }
+ void ComputeTip(double x,double z) {
+  double meal=x/(1+tax);
+  cout<<fixed<<setprecision(2);
+  cout<<"Cost with tax "<<x<<endl;
+  cout<<"Cost without tax "<<meal<<endl;
+  cout<<"Tip is "<<meal*z<<endl;
+
+      }
+};
+
+class Inventory {
+ private: int id;
+ int qyt;
+ double cost;
+ double total;
+ void setTotal() {
+  total=qyt*cost;
+ }
+ public:
+ Inventory() {
+  id=0;
+  qyt=0;
+  cost=0;
+  total=0;}
+ Inventory(int id1,int qyt1,double cost1) {
+ id=id1;
+  qyt=qyt1;
+  cost=cost1;
+  setTotal();
+
+ }
+ void setItemnumber(int id1){ id=id1;}
+ void SetQuantity(int qyt1){ qyt=qyt1; setTotal();}
+ void setCost(double cost1) { cost=cost1; setTotal();}
+ void setTotal(double total1) { total=cost*qyt;}
+ int getItemnumber() { return id; }
+ int getQuantity() { return qyt; }
+ double getCost() { return cost; }
+ double getTotal() { return total; }
+  void display(){
+  cout<<"id of product : "<<id<<endl;
+  cout<<"qty of product : "<<qyt<<endl;
+  cout<<"cost of product : "<<cost<<endl;
+  cout<<"total of product : "<<total<<endl;
+
+ }
+};
+int main() {
+
+
+ // IntRange range(0,1000000); //problem 1;
+ // int input=range.getInt();
+ // cout<<"You entered: "<<input;
+
+ // Data d1; //problem 2
+ // d1.display();
+ // Data d2(10,8,2007);
+ // d2.display();
+ // d1.setMonth();
+ // d1.setDay();
+ // d1.setYear();
+ // d1.display();
+
+ // Heading h; //problem 3
+ // Heading h2(" Pet pals","Payroll Report");
+ // h2.display();
+
+ // CAR c;
+ // c.setYear();
+ // c.setName();
+ // c.setSpeed();
+ // c.display();
+ // c.Acc();
+ // c.display();
+ // c.Acc();
+ // c.display();
+ // c.Acc();
+ // c.display();
+ // c.Acc();
+ // c.display();
+ // c.Acc();
+ // c.display();
+ // c.Brake();
+ // c.display();
+ // c.Brake();
+ // c.display();
+ // c.Brake();
+ // c.display();
+ // c.Brake();
+ // c.display();
+ // c.Brake();
+ // c.display();
+
+ // Widget w;
+ // w.setWidget(2000);
+ // w.display();
+ // w.setWidget(3000);
+ // w.display();
+
+ // Population w;
+ // w.setBirth();
+ // w.setDeath();
+ // w.setPopulation();
+ // w.display();
+ // double bill,tipp;
+ // while (true) {
+ //  cout<<"Enter bill amount (or -1 to exit)";
+ //  cin>>bill;
+ //  if (bill==-1) break;
+ //
+ //  cout<<"Enter decimal for tax 0.15 for 15%";
+ //  cin>>tipp;
+ //  Tip a;
+ //  a.ComputeTip(bill,tipp);
+ // }
+
+ //item program
+// Inventory inv(10001,250,15);
+//  inv.display();
+// inv.SetQuantity(15);
+// inv.setCost(20);
+// inv.display();
+
+ return 0;
+}
