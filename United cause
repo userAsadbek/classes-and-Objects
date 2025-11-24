@@ -1,0 +1,89 @@
+// main cpp 
+ #include <iostream>
+ #include "donlist.h"
+ using namespace std;
+ 
+ int main(){ 
+cout<<"Enter number of donation";
+int n; cin>>n;
+double* fund=new double[n]; 
+for(int i; i<n;i++){ 
+cin>>fund[i] }
+  DonationList ckGraphics(n,fund);
+ cout<<"The donations sorted in descending order :"<<endl;
+ ckGraphics.showSorted();
+  cout<<"The donations in their original order :"<<endl;
+  ckGraphics.show(); 
+  delete [] fund;
+      return 0;
+  }
+//donlist h 
+#ifndef DONLIST_H
+#define DONLIST_H
+class DonationList{ 
+    private: 
+     int numDonations;
+    double *donations;
+    double **arrPtr;
+    void selectSort();
+    public: 
+    DonationList(int num, double gifts[]);
+    ~DonationList();
+    void show();
+    void showSorted();
+};
+#endif 
+
+//donlist cpp
+#include <iostream>
+#include "donlist.h"
+using namespace std;
+DonationList::DonationList(int num,double gifts[]) {
+    if(num>0){  
+        numDonations=num;
+        donations=new double[num];
+        arrPtr=new double*[num];
+        for(int i=0;i<num;i++){
+            donations[i]=gifts[i];
+            arrPtr[i]=&donations[i];
+        } 
+        selectSort();
+    }
+} 
+
+DonationList::~DonationList() {
+    delete [] donations;
+    donations=nullptr;
+    delete [] arrPtr;
+    arrPtr=nullptr;
+}
+
+void DonationList::selectSort() {
+    for(int i=0;i<numDonations-1;i++){
+        int minIndex=i;
+        double *minElem=arrPtr[i];
+        for(int j=i+1;j<numDonations;j++){
+            if(*arrPtr[j]>*arrPtr[minIndex]){
+                minIndex=j;
+                minElem=arrPtr[j];
+            }
+        }
+       
+        arrPtr[minIndex]=arrPtr[i];
+        arrPtr[i]=minElem;
+    }
+}
+void DonationList::show(){ 
+    for(int i=0;i<numDonations;i++){
+        cout<<donations[i]<<" ";
+
+    }
+    cout<<endl;
+}
+void DonationList::showSorted(){ 
+    for(int i=0;i<numDonations;i++){
+        cout<<*(arrPtr[i])<<" ";
+
+    }
+    cout<<endl;
+}
